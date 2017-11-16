@@ -30,6 +30,19 @@ class test_add_contact(unittest.TestCase):
         self.return_to_home_page(wd)
         self.logout(wd)
 
+    def test_test_add_blank_contact(self):
+        wd = self.wd
+        self.open_home_page(wd)
+        self.login(wd, username="admin", password="secret")
+        self.Create_contact(wd, Contact(firstname="", middlename="", lastname="", nickname="",
+                                        title="", company="", address="", home_phone="",
+                                        mobile="", work_phone="", fax="", email="",
+                                        email2="", email3="", homepage_ru="", byear="",
+                                        ayear="",
+                                        address2="", phone2="", notes=""))
+        self.return_to_home_page(wd)
+        self.logout(wd)
+
 
     def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
@@ -86,17 +99,9 @@ class test_add_contact(unittest.TestCase):
         wd.find_element_by_name("homepage").click()
         wd.find_element_by_name("homepage").clear()
         wd.find_element_by_name("homepage").send_keys(contact.homepage_ru)
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[3]").is_selected():
-            wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[3]").click()
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[3]").is_selected():
-            wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[3]").click()
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
         wd.find_element_by_name("byear").send_keys(contact.byear)
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[3]//option[3]").is_selected():
-            wd.find_element_by_xpath("//div[@id='content']/form/select[3]//option[3]").click()
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[4]//option[3]").is_selected():
-            wd.find_element_by_xpath("//div[@id='content']/form/select[4]//option[3]").click()
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
         wd.find_element_by_name("ayear").send_keys(contact.ayear)
