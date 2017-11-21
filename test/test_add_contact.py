@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-import pytest
-
-from contact import Contact
+from model.contact import Contact
 
 
 
