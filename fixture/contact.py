@@ -7,7 +7,7 @@ class ContactHelper:
 
     def Create(self, contact):
         wd = self.app.wd
-        self.app.open_home_page()
+        self.app.return_to_home_page()
         # init group creation
         wd.find_element_by_link_text("add new").click()
         # fill group form
