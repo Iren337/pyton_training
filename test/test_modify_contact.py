@@ -2,82 +2,122 @@ from model.contact import Contact
 
 
 def test_modify_contact_firstname(app):
-    app.contact.modify_first_contact(Contact(firstname="222"))
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
+    app.contact.modify_first_contact(Contact(firstname="333"))
 
 
 def test_modify_contact_middlename(app):
-    app.contact.modify_first_contact(Contact(middlename="2222"))
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
+    app.contact.modify_first_contact(Contact(middlename="3333"))
 
 
 def test_modify_contact_lastname(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(lastname="22222"))
 
 
 def test_modify_contact_nickname(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(nickname="222222"))
 
 
 def test_modify_contact_title(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(title="title2"))
 
 
 def test_modify_contact(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(company="company2"))
 
 
 def test_modify_contact_address(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(address="address2"))
 
 
 def test_modify_contact_home_phone(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(home_phone="123456782"))
 
 
 def test_modify_contact_mobile(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(mobile="23456782"))
 
 
 def test_modify_contact_work_phone(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(work_phone="34567892"))
 
 
 def test_modify_contact_fax(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(fax="45678902"))
 
 
 def test_modify_contact_email(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(email="email2"))
 
 
 def test_modify_contact_email2(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(email2="email22"))
 
 
 def test_modify_contact_email3(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(email3="email32"))
 
 
 def test_modify_contact_homepage_ru(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(homepage_ru="homepage2.ru"))
 
 
 def test_modify_contact_byear(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(byear="1842"))
 
 
 def test_modify_contact_ayear(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(ayear="1232"))
 
 
 def test_modify_contact_address2(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(address2="address secondary2"))
 
 
 def test_modify_contact_phone2(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(phone2="home2"))
 
 
 def test_modify_contact_notes(app):
+    if app.contact.count() == 0:
+        app.contact.Create(Contact(firstname="name"))
     app.contact.modify_first_contact(Contact(notes="notes2"))
 
 
