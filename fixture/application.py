@@ -7,7 +7,7 @@ class Application:
 
     def __init__(self):
         self.wd = WebDriver(capabilities={"marionette": False})
-        #self.wd.implicitly_wait(5)
+        self.wd.implicitly_wait(5)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
@@ -23,12 +23,12 @@ class Application:
 
     def open_home_page(self):
         wd = self.wd
-        if  not (wd.current_url.endswith("addressbook/")):
+        if  not (wd.current_url.__eq__("http://localhost/addressbook/")):
             wd.get("http://localhost/addressbook/")
 
     def return_to_home_page(self):
         wd = self.wd
-        if  not (wd.current_url.endswith("addressbook/")):
+        if  not (wd.current_url.endswith("addressbook/") and len(wd.find_elements_by_name("add")) > 0):
             wd.find_element_by_link_text("home").click()
 
     def destroy(self):
