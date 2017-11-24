@@ -8,11 +8,11 @@ class ContactHelper:
     def Create(self, contact):
         wd = self.app.wd
         self.app.return_to_home_page()
-        # init group creation
+        # init contact creation
         wd.find_element_by_link_text("add new").click()
-        # fill group form
+        # fill contact form
         self.fill_contact_form(contact)
-        # submit group creation
+        # submit contact creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         self.app.return_to_home_page()
 
@@ -28,7 +28,7 @@ class ContactHelper:
 
     def fill_contact_form(self, contact):
             wd = self.app.wd
-            # fill group form
+            # fill contact form
             self.change_field_value("firstname", contact.firstname)
             self.change_field_value("middlename", contact.middlename)
             self.change_field_value("lastname", contact.lastname)
@@ -62,7 +62,7 @@ class ContactHelper:
         wd = self.app.wd
         self.app.return_to_home_page()
         self.select_contact_edit_button()
-        # fill group form
+        # fill contact form
         self.fill_contact_form(new_contact_data)
         self.select_contact_update_button()
         self.app.return_to_home_page()
