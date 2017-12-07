@@ -84,11 +84,11 @@ class ContactHelper:
         wd = self.app.wd
         self.app.return_to_home_page()
         contacts = []
-        for element in wd.find_elements_by_name("entry"):
-            text = element.text
-            id = element.find_element_by_name("selected[]").get_attribute("value")
-            lastname = text.split(' ')[0]
-            firstname = text.split(' ')[1]
+        for row in wd.find_elements_by_name("entry"):
+            cells = row.find_elements_by_tag_name("td")
+            id = cells[0].find_element_by_tag_name("input").get_attribute("value")
+            lastname = cells[1].text
+            firstname = cells[2].text
             contacts.append(Contact(firstname=firstname, lastname=lastname, id=id))
         return contacts
 
