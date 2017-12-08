@@ -18,15 +18,22 @@ class ContactHelper:
         self.contact_cache = None
 
     def delete_first_contact(self):
+        self.delete_contact_by_index(0)
+
+    def delete_contact_by_index(self, index):
         wd = self.app.wd
         self.app.return_to_home_page()
         # select first contract
-        wd.find_element_by_name("selected[]").click()
+        self.find_contact_by_index(index)
         # submit deletion
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
         self.app.return_to_home_page()
         self.contact_cache = None
+
+    def find_contact_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_name("selected[]")[index].click()
 
     def fill_contact_form(self, contact):
             wd = self.app.wd
@@ -61,14 +68,24 @@ class ContactHelper:
             wd.find_element_by_name(field_name).send_keys(text)
 
     def modify_first_contact(self, new_contact_data):
+        self.modify_contact_by_index(0)
+
+    def modify_contact_by_index(self, index, new_contact_data):
         wd = self.app.wd
         self.app.return_to_home_page()
-        self.select_contact_edit_button()
+        self.open_contact_to_edit_by_index(index)
         # fill contact form
         self.fill_contact_form(new_contact_data)
         self.select_contact_update_button()
         self.app.return_to_home_page()
         self.contact_cache = None
+
+    def open_contact_to_edit_by_index(self, index):
+        wd = self.app.wd
+        self.app.return_to_home_page()
+        row = wd.find_elements_by_name("entry")[index]
+        cells = row.find_elements_by_tag_name("td")[7]
+        cells.find_element_by_tag_name("a").click()
 
     def select_contact_update_button(self):
         wd = self.app.wd
