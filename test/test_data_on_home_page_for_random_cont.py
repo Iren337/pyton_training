@@ -1,7 +1,7 @@
 import re
 from random import randrange
 
-from test.test_phones import merge_phones_like_on_home_page, merge_emails_like_on_home_page
+from test.test_phones import merge_phones_like_on_home_page
 
 
 def test_all_data_on_home_page(app):
@@ -18,3 +18,9 @@ def test_all_data_on_home_page(app):
 
 def clear2(s):
     return re.sub(" ", "", s)
+
+def merge_emails_like_on_home_page(contact):
+    return "\n".join(filter(lambda x: x !="",
+                            map(lambda x: clear2(x),
+                            filter(lambda x: x is not None,
+                                       [contact.email, contact.email2, contact.email3]))))
