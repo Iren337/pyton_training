@@ -2,7 +2,7 @@ from model.group import Group
 import random
 
 
-def test_delete_some_group(app, db, check_ui):
+def test_delete_some_group(app, db):
 #    if app.group.count() == 0:
     if len(db.get_group_list()) == 0:
         app.group.create(Group(name="test"))
@@ -16,7 +16,7 @@ def test_delete_some_group(app, db, check_ui):
     old_groups.remove(group)
 #    old_groups[index:index+1] = []
     assert old_groups == new_groups
-    if check_ui:
+    if db.check_ui == "true":
         def clean(group):
             return Group(id=group.id, name=group.name.strip())
         new_groups = map(clean, db.get_group_list())
