@@ -99,14 +99,23 @@ class ContactHelper:
         self.app.return_to_home_page()
         self.contact_cache = None
 
-    def modify_contact_by_id(self, new_contact_data):
-        wd = self.app.wd
+#    def modify_contact_by_id(self, new_contact_data):
+#        wd = self.app.wd
                 # fill contact form
+#        self.fill_contact_form(new_contact_data)
+#        self.select_contact_update_button()
+#        self.app.return_to_home_page()
+#        self.contact_cache = None
+
+    def modify_contact_by_id(self, id, new_contact_data):
+        wd = self.app.wd
+        self.app.return_to_home_page()
+        self.select_contact_by_id(id)
+        wd.find_element_by_xpath('//a[@href="edit.php?id=%s"]' %id).click()
         self.fill_contact_form(new_contact_data)
-        self.select_contact_update_button()
+        wd.find_element_by_name("update").click()
         self.app.return_to_home_page()
         self.contact_cache = None
-
 
 
     def open_contact_to_edit_by_index(self, index):
@@ -183,7 +192,37 @@ class ContactHelper:
         return Contact(home_phone=home_phone, mobile=mobile,
                        work_phone=work_phone, phone2=phone2)
 
+    def select_group_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("select[name='to_group']>option[value='%s']" % id).click()
 
+    def open_group_page(self, id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("select[name='group']>option[value='%s']" % id).click()
+
+    def add_contact_to_group_by_id(self, contact_id, group_id):
+        wd = self.app.wd
+        self.app.return_to_home_page()
+        self.select_contact_by_id(contact_id)
+        #self.select_group_by_id(group_id)
+        #wd.find_element_by_css_selector("input[value='Add to']").click()
+        wd.find_element_by_css_selector("select[name='to_group']>option[value='%s']" % group_id).click()
+        wd.find_element_by_name("add").click()
+        self.app.return_to_home_page()
+        self.contact_cache = None
+
+
+
+
+    def remove_contact_from_group(self, contact_id, group_id):
+        wd = self.app.wd
+        self.app.return_to_home_page()
+        wd.find_element_by_css_selector("select[name='group']>option[value='%s']" % group_id).click()
+        self.select_contact_by_id(contact_id)
+        wd.find_element_by_name("remove").click()
+        #wd.find_element_by_css_selector("input[name ='remove']").click()
+        self.app.return_to_home_page()
+        self.contact_cache = None
 
 
 
